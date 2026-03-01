@@ -38,7 +38,7 @@ graph LR
 | Storage | MinIO (S3-compatible) | Data Lake for all layers |
 | Processing (Silver) | Polars | Fast dataframe deduplication |
 | Processing (Gold) | dbt + DuckDB | SQL dimensional modeling via dbt-duckdb |
-| Visualization | Streamlit + PyDeck + Plotly | BI Dashboard with 3D shipping map |
+| Visualization | Streamlit + PyDeck + Plotly | 7-page BI Dashboard with 3D shipping map |
 | Infrastructure | Docker Compose | Containerized local environment |
 | Metadata DB | PostgreSQL 13 | Airflow backend |
 
@@ -105,50 +105,20 @@ olist-pipeline/
 │   ├── 01_ingest_bronze.py      # Raw CSV → MinIO Bronze
 │   ├── 02_process_silver.py     # Deduplicate → MinIO Silver
 │   └── 03_process_gold.py       # dbt run → MinIO Gold
-├── dbt_project/                 # dbt models (Gold layer)
+├── dbt_project/                 # dbt models (Gold layer) — 29 models, 57 tests
 │   ├── models/
 │   │   ├── staging/             # Views on Silver Parquet (8 models)
-│   │   │   ├── sources.yml
-│   │   │   ├── schema.yml
-│   │   │   ├── stg_orders.sql
-│   │   │   ├── stg_order_items.sql
-│   │   │   ├── stg_customers.sql
-│   │   │   ├── stg_sellers.sql
-│   │   │   ├── stg_geolocation.sql
-│   │   │   ├── stg_payments.sql
-│   │   │   ├── stg_products.sql
-│   │   │   └── stg_reviews.sql
 │   │   ├── marts/               # Dimensions & Fact tables (12 models)
-│   │   │   ├── schema.yml
-│   │   │   ├── dim_customers.sql
-│   │   │   ├── dim_sellers.sql
-│   │   │   ├── dim_products.sql
-│   │   │   ├── dim_geolocation.sql
-│   │   │   ├── dim_date.sql
-│   │   │   ├── fact_orders.sql
-│   │   │   ├── fact_order_items.sql
-│   │   │   ├── fact_payments.sql
-│   │   │   ├── fact_reviews.sql
-│   │   │   ├── fact_order_lifecycle.sql
-│   │   │   ├── fact_shipping_network.sql
-│   │   │   └── snapshot_daily_seller_backlog.sql
 │   │   └── data_products/       # Analytical reports (9 models)
-│   │       ├── schema.yml
-│   │       ├── obt_sales_analytics.sql
-│   │       ├── rpt_customer_rfm.sql
-│   │       ├── rpt_seller_performance.sql
-│   │       ├── rpt_product_category_analysis.sql
-│   │       ├── rpt_shipping_efficiency.sql
-│   │       ├── rpt_cohort_retention.sql
-│   │       ├── rpt_revenue_trends.sql
-│   │       ├── rpt_customer_ltv.sql
-│   │       └── rpt_market_basket.sql
+│   ├── tests/                   # Custom dbt tests
+│   │   ├── generic/not_empty.sql
+│   │   └── assert_gold_models_not_empty.sql
 │   ├── dbt_project.yml
 │   └── profiles.yml
 ├── scripts/
 │   ├── simulate_stream.py       # Daily/backfill data generator
 │   ├── backfill_data.py         # Bulk historical data loader
-│   └── dashboard.py             # Streamlit BI dashboard
+│   └── dashboard.py             # Streamlit BI dashboard (7 pages)
 ├── config/
 │   └── duckdb/                  # DuckDB configuration
 ├── data/
@@ -177,9 +147,11 @@ olist-pipeline/
 ## 🗺️ Roadmap
 
 - [x] Implement dbt project for Gold transformations (dbt-duckdb)
-- [x] Add dbt tests (`unique`, `not_null`) on mart models
+- [x] Add dbt tests (`unique`, `not_null`, custom `not_empty`) — 57 tests, all passing
 - [x] Add `dim_products`, `dim_geolocation`, and `dim_date` to the Gold layer
 - [x] Add `fact_order_items`, `fact_payments`, `fact_reviews`, `snapshot_daily_seller_backlog`
 - [x] Build data products: RFM segmentation, seller performance, cohort retention, revenue trends, customer LTV, market basket analysis
-- [ ] Add Streamlit dashboards for interactive data exploration
+- [x] Build 7-page Streamlit BI dashboard with dark theme and interactive filters
+- [ ] Add data quality checks / alerting in Airflow
+- [ ] Add idempotency guard (skip re-ingesting already-uploaded partitions)
 

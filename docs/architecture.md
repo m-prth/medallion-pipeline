@@ -129,7 +129,21 @@ dbt_run  →  dbt_test
 | Task ID | Description |
 |---|---|
 | `dbt_run` | Runs `dbt run` — builds all staging views, mart tables, and data products |
-| `dbt_test` | Runs `dbt test` — validates `unique` and `not_null` constraints |
+| `dbt_test` | Runs `dbt test` — validates `unique`, `not_null`, and custom `not_empty` constraints |
+
+### dbt Testing Strategy
+
+**57 tests** across all layers, all passing:
+
+| Test Type | Count | Description |
+|---|---|---|
+| `unique` | 15 | Primary key uniqueness on dimensions, facts, and data products |
+| `not_null` | 41 | Required columns are never null |
+| `assert_gold_models_not_empty` | 1 | Singular test: verifies all 21 Gold models have >0 rows |
+
+**Custom tests** in `dbt_project/tests/`:
+- `generic/not_empty.sql` — Reusable generic test macro (fails if model has 0 rows)
+- `assert_gold_models_not_empty.sql` — Singular test that checks all Gold models in one query
 
 ---
 

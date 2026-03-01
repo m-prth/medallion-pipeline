@@ -98,7 +98,7 @@ This document outlines the Medallion Architecture (Bronze -> Silver -> Gold) for
 3.  **DAG 02 — Silver**: Polars deduplication → `Silver` (MinIO).
 4.  **DAG 03 — Gold (dbt)**:
     - `dbt run`: Builds 8 staging views, 12 mart tables, and 9 data products.
-    - `dbt test`: Validates `unique` / `not_null` constraints (56 tests total).
+    - `dbt test`: Validates `unique` / `not_null` / `not_empty` constraints (57 tests total).
 
 ## 5. Model Count Summary
 

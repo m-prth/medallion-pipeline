@@ -34,12 +34,14 @@ This is the active development checklist for the Olist Data Pipeline.
 ---
 
 ## Phase 4: Dashboard & Visualization ✅
-- [x] Build Streamlit dashboard (`scripts/dashboard.py`)
-  - [x] KPI cards (orders, late rate, avg delivery time)
-  - [x] Daily order volume line chart
-  - [x] Top states bar chart
-  - [x] 3D shipping arc map (PyDeck) with distance filter
-  - [x] Raw data explorer (tabbed, Gold layer preview)
+- [x] Build Streamlit dashboard (`scripts/dashboard.py`) — 7 interactive pages
+  - [x] Executive Overview: 6 KPI cards, revenue trends, MoM growth, cumulative revenue
+  - [x] Customer Analytics: RFM segmentation, LTV tiers, cohort retention heatmap
+  - [x] Seller Performance: top-N ranking, revenue vs review scatter, state bars
+  - [x] Product Categories: revenue treemap, dissatisfaction rate bars
+  - [x] Shipping & Logistics: delivery/distance donuts, 3D PyDeck arc map
+  - [x] Market Basket: co-occurrence bars, Jaccard similarity
+  - [x] Data Explorer: browse all 21 Gold tables with column inspector
 
 ---
 
@@ -60,13 +62,14 @@ This is the active development checklist for the Olist Data Pipeline.
   - [x] Dimension models (5): `dim_customers`, `dim_sellers`, `dim_products`, `dim_geolocation`, `dim_date`
   - [x] Fact models (7): `fact_orders`, `fact_order_items`, `fact_payments`, `fact_reviews`, `fact_order_lifecycle`, `fact_shipping_network`, `snapshot_daily_seller_backlog`
   - [x] Data products (9): `obt_sales_analytics`, `rpt_customer_rfm`, `rpt_seller_performance`, `rpt_product_category_analysis`, `rpt_shipping_efficiency`, `rpt_cohort_retention`, `rpt_revenue_trends`, `rpt_customer_ltv`, `rpt_market_basket`
-  - [x] `schema.yml` with `unique` / `not_null` tests (56 tests, all passing)
+  - [x] `schema.yml` with `unique` / `not_null` tests (57 tests, all passing)
   - [x] DAG `03_process_gold` rewritten to use `dbt run` + `dbt test` via BashOperator
   - [x] Centralized model configs in `schema.yml` (no inline `{{ config() }}` in SQL)
+  - [x] Custom `not_empty` test and `assert_gold_models_not_empty` singular test
 
 ---
 
 ## Phase 7: Planned Enhancements 🔜
-- [ ] Update Streamlit dashboard to visualize new data products (RFM, cohort heatmap, revenue trends)
+- [x] Update Streamlit dashboard to visualize new data products (RFM, cohort heatmap, revenue trends)
 - [ ] Add data quality checks / alerting in Airflow
 - [ ] Add idempotency guard (skip re-ingesting already-uploaded partitions)
