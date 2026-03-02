@@ -447,7 +447,7 @@ elif page == "🚚 Shipping & Logistics":
             map_style="dark",
             initial_view_state=pdk.ViewState(latitude=-15.0, longitude=-50.0, zoom=3.5, pitch=45),
             layers=[arc_layer],
-        ))
+        ), use_container_width=True, height=700)
 
 # ══════════════════════════════════════════════
 # PAGE 6: MARKET BASKET

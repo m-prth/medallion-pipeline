@@ -41,6 +41,9 @@ Navigation is via the sidebar radio menu. Each page covers a different area of t
 | Order Volume | `rpt_revenue_trends` | Monthly order counts |
 | Unique Customers | `rpt_revenue_trends` | Distinct buyers per month |
 
+![Executive Overview - KPIs & Revenue](screenshots/ExecutiveOverview_1.png)
+![Executive Overview - Growth & Volume](screenshots/ExecutiveOverview_2.png)
+
 ### 2. 👥 Customer Analytics (3 sub-tabs)
 
 | Sub-tab | Source | Visualizations |
@@ -48,6 +51,10 @@ Navigation is via the sidebar radio menu. Each page covers a different area of t
 | **RFM Segmentation** | `rpt_customer_rfm` | Donut chart of segments, scatter (monetary vs frequency, size = RFM score), filterable table |
 | **Customer LTV** | `rpt_customer_ltv` | LTV tier bar, spend histogram, avg spend by state |
 | **Cohort Retention** | `rpt_cohort_retention` | Retention rate heatmap by cohort month, cohort size bar chart |
+
+![Customer Analytics - RFM Segmentation](screenshots/CustomerAnalytics_1.png)
+![Customer Analytics - LTV Analysis](screenshots/CustomerAnalytics_2.png)
+![Customer Analytics - Cohort Retention](screenshots/CustomerAnalytics_3.png)
 
 ### 3. 🏪 Seller Performance
 
@@ -58,6 +65,8 @@ Navigation is via the sidebar radio menu. Each page covers a different area of t
 | Revenue vs Review Scatter | `rpt_seller_performance` | Bubble size = orders, color = delivery speed |
 | State Revenue Bars | `rpt_seller_performance` | Aggregated by state, colored by avg review |
 
+![Seller Performance](screenshots/SellerPerformance.png)
+
 ### 4. 📦 Product Categories
 
 | Component | Source | Description |
@@ -66,12 +75,17 @@ Navigation is via the sidebar radio menu. Each page covers a different area of t
 | Top 15 Revenue Bars | `rpt_product_category_analysis` | Horizontal bars colored by review score |
 | Dissatisfaction Rate | `rpt_product_category_analysis` | Categories with highest % of low reviews (≤2/5) |
 
+![Product Categories](screenshots/ProductCategory.png)
+
 ### 5. 🚚 Shipping & Logistics (2 sub-tabs)
 
 | Sub-tab | Source | Visualizations |
 |---|---|---|
 | **Analytics** | `rpt_shipping_efficiency` | Delivery time donut, distance donut, distance vs delivery scatter (color = late) |
 | **3D Shipping Map** | `fact_shipping_network` | PyDeck ArcLayer: 🔴 seller → 🔵 customer, distance slider filter, 2000 route limit |
+
+![Shipping Analytics](screenshots/ShippingAndLogistics_1.png)
+![3D Shipping Map](screenshots/ShippingAndLogistics_2.png)
 
 ### 6. 🔗 Market Basket
 
@@ -81,6 +95,8 @@ Navigation is via the sidebar radio menu. Each page covers a different area of t
 | Jaccard Similarity Bars | `rpt_market_basket` | Same pairs ranked by Jaccard similarity |
 | Full Data Table | `rpt_market_basket` | All category pairs with counts and similarity |
 
+![Market Basket](screenshots/MarketBasket.png)
+
 ### 7. 🗄️ Data Explorer
 
 Browse any of the 21 Gold layer tables (dimensions, facts, data products) with:
@@ -88,6 +104,8 @@ Browse any of the 21 Gold layer tables (dimensions, facts, data products) with:
 - Configurable row limit (10–1000)
 - Column type inspector (expandable)
 - Memory usage stats
+
+![Data Explorer](screenshots/DataExplorer.png)
 
 ---
 

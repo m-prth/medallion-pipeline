@@ -30,6 +30,14 @@ graph LR
 
 ---
 
+## 📊 Dashboard Preview
+
+![Executive Overview](docs/screenshots/ExecutiveOverview_1.png)
+
+> **7 interactive pages** — see the full [Dashboard Guide](docs/dashboard.md) for all screenshots.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer | Tool | Purpose |
